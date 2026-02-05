@@ -4,6 +4,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import CoachCard from '@/components/cards/CoachCard';
 import { coaches } from '@/data/mockData';
 import { useMultipleScrollAnimations } from '@/hooks/useScrollAnimation';
+ import coachesBanner from '@/assets/coaches-banner.jpg';
 
 const Coaches = () => {
   useMultipleScrollAnimations('.coach-card');
@@ -20,6 +21,7 @@ const Coaches = () => {
           { label: 'Home', path: '/' },
           { label: 'Coaches' },
         ]}
+         bannerImage={coachesBanner}
       />
 
       <section className="section-padding">
