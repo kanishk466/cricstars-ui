@@ -4,6 +4,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import TournamentCard from '@/components/cards/TournamentCard';
 import { tournaments } from '@/data/mockData';
 import { useMultipleScrollAnimations } from '@/hooks/useScrollAnimation';
+ import tournamentsBanner from '@/assets/tournaments-banner.jpg';
 
 const Tournaments = () => {
   useMultipleScrollAnimations('.tournament-card');
@@ -20,6 +21,7 @@ const Tournaments = () => {
           { label: 'Home', path: '/' },
           { label: 'Tournaments' },
         ]}
+         bannerImage={tournamentsBanner}
       />
 
       <section className="section-padding">
