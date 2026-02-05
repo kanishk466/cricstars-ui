@@ -4,6 +4,7 @@ import PageHeader from '@/components/ui/PageHeader';
 import AcademyCard from '@/components/cards/AcademyCard';
 import { academies } from '@/data/mockData';
 import { useMultipleScrollAnimations } from '@/hooks/useScrollAnimation';
+import academiesBanner from '@/assets/academies-banner.jpg';
 
 const Academies = () => {
   useMultipleScrollAnimations('.academy-card');
@@ -20,6 +21,7 @@ const Academies = () => {
           { label: 'Home', path: '/' },
           { label: 'Academies' },
         ]}
+        bannerImage={academiesBanner}
       />
 
       <section className="section-padding">
