@@ -24,6 +24,7 @@ const Header = () => {
     { path: '/academies', label: 'Academies' },
     { path: '/coaches', label: 'Coaches' },
     { path: '/tournaments', label: 'Tournaments' },
+    { path: '/blog', label: 'Blog' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
