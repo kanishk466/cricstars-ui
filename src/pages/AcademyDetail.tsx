@@ -5,7 +5,8 @@ import PageHeader from '@/components/ui/PageHeader';
 import { academies } from '@/data/mockData';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { MapPin, Phone, Mail, Award, BookOpen, ArrowLeft } from 'lucide-react';
- import ContactForm from '@/components/forms/ContactForm';
+import ContactForm from '@/components/forms/ContactForm';
+import CommentSection from '@/components/comments/CommentSection';
  import academiesBanner from '@/assets/academies-banner.jpg';
 
 const AcademyDetail = () => {
@@ -136,8 +137,11 @@ const AcademyDetail = () => {
                      <MapPin size={20} className="text-primary mt-1" />
                      <span className="text-foreground">{academy.contact.address}</span>
                   </div>
-                </div>
                </div>
+              </div>
+
+                {/* Comments */}
+                <CommentSection entityId={academy.id} entityType="academy" />
              </div>
 
              {/* Sidebar */}

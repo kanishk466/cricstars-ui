@@ -6,6 +6,7 @@ import { coaches } from '@/data/mockData';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Briefcase, Target, Phone, Mail, Award, ArrowLeft } from 'lucide-react';
  import ContactForm from '@/components/forms/ContactForm';
+import CommentSection from '@/components/comments/CommentSection';
  import coachesBanner from '@/assets/coaches-banner.jpg';
 
 const CoachDetail = () => {
@@ -115,6 +116,9 @@ const CoachDetail = () => {
                    </div>
                  </div>
               </div>
+
+                {/* Comments */}
+                <CommentSection entityId={coach.id} entityType="coach" />
              </div>
 
              {/* Sidebar */}
