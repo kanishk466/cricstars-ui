@@ -121,7 +121,19 @@ const TournamentDetail = () => {
 
              {/* Sidebar */}
              <div className="lg:col-span-1">
-               <div className="sticky top-24">
+               <div className="sticky top-24 space-y-4">
+                 <div className="p-6 rounded-xl bg-primary/10 border border-primary/20 text-center">
+                   <h3 className="text-xl font-display text-foreground mb-2">Ready to Compete?</h3>
+                   <p className="text-sm text-muted-foreground mb-4">
+                     Register your team for {tournament.name} before {tournament.registrationDeadline}.
+                   </p>
+                   <Link
+                     to={`/tournaments/${tournament.id}/register`}
+                     className="inline-flex items-center justify-center w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors"
+                   >
+                     Register Now
+                   </Link>
+                 </div>
                  <ContactForm recipientName={tournament.name} recipientType="tournament" />
               </div>
             </div>
