@@ -1,24 +1,75 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import heroBanner from '@/assets/hero-banner.jpg';
+import heroBanner2 from '@/assets/hero-banner-2.jpg';
+import heroBanner3 from '@/assets/hero-banner-3.jpg';
+
+const slides = [
+  { src: heroBanner, alt: 'Cricket stadium' },
+  { src: heroBanner2, alt: 'Cricket batsman' },
+  { src: heroBanner3, alt: 'Cricket bowler' },
+];
 
 const HeroSection = () => {
   const titleRef = useScrollAnimation();
   const subtitleRef = useScrollAnimation();
   const buttonsRef = useScrollAnimation();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setCurrent((p) => (p + 1) % slides.length), 5000);
+    return () => clearInterval(id);
+  }, []);
+
+  const goTo = (i: number) => setCurrent((i + slides.length) % slides.length);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* Background Carousel with Overlay */}
       <div className="absolute inset-0">
-        <img
-          src={heroBanner}
-          alt="Cricket stadium"
-          className="w-full h-full object-cover"
-        />
+        {slides.map((slide, i) => (
+          <img
+            key={i}
+            src={slide.src}
+            alt={slide.alt}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+              i === current ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
+      </div>
+
+      {/* Carousel Controls */}
+      <button
+        onClick={() => goTo(current - 1)}
+        aria-label="Previous slide"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-background/40 hover:bg-background/70 border border-border backdrop-blur-sm transition-colors"
+      >
+        <ChevronLeft size={24} className="text-foreground" />
+      </button>
+      <button
+        onClick={() => goTo(current + 1)}
+        aria-label="Next slide"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-background/40 hover:bg-background/70 border border-border backdrop-blur-sm transition-colors"
+      >
+        <ChevronRight size={24} className="text-foreground" />
+      </button>
+
+      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              i === current ? 'bg-primary w-8' : 'bg-muted-foreground/40 hover:bg-muted-foreground/60 w-2'
+            }`}
+          />
+        ))}
       </div>
 
       <div className="container mx-auto px-4 md:px-8 pt-20 pb-16 relative z-10">
