@@ -32,17 +32,35 @@ const HeroSection = () => {
       {/* Background Carousel with Overlay */}
       <div className="absolute inset-0">
         {slides.map((slide, i) => (
-          <img
+          <div
             key={i}
-            src={slide.src}
-            alt={slide.alt}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
               i === current ? 'opacity-100' : 'opacity-0'
             }`}
-          />
+          >
+            {slide.fit === 'contain' && (
+              <img
+                src={slide.src}
+                alt=""
+                aria-hidden
+                className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-60"
+              />
+            )}
+            <img
+              src={slide.src}
+              alt={slide.alt}
+              className={`absolute inset-0 w-full h-full ${
+                slide.fit === 'contain' ? 'object-contain' : 'object-cover'
+              }`}
+            />
+          </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
+        {slides[current].fit === 'cover' && (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
+          </>
+        )}
       </div>
 
       {/* Carousel Controls */}
