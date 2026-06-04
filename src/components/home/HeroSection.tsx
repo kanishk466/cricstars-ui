@@ -8,7 +8,7 @@ import heroBanner3 from '@/assets/hero-banner-3.jpg';
 import tournamentPoster from '@/assets/tournament-2026-banner.jpg.asset.json';
 
 const slides = [
-  { src: tournamentPoster.url, alt: 'All India Open Age Group Tournament 2026', fit: 'contain' as const },
+  { src: tournamentPoster.url, alt: 'All India Open Age Group Tournament 2026', fit: 'cover' as const },
   { src: heroBanner, alt: 'Cricket stadium', fit: 'cover' as const },
   { src: heroBanner2, alt: 'Cricket batsman', fit: 'cover' as const },
   { src: heroBanner3, alt: 'Cricket bowler', fit: 'cover' as const },
@@ -32,35 +32,17 @@ const HeroSection = () => {
       {/* Background Carousel with Overlay */}
       <div className="absolute inset-0">
         {slides.map((slide, i) => (
-          <div
+          <img
             key={i}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            src={slide.src}
+            alt={slide.alt}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
               i === current ? 'opacity-100' : 'opacity-0'
             }`}
-          >
-            {slide.fit === 'contain' && (
-              <img
-                src={slide.src}
-                alt=""
-                aria-hidden
-                className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-60"
-              />
-            )}
-            <img
-              src={slide.src}
-              alt={slide.alt}
-              className={`absolute inset-0 w-full h-full ${
-                slide.fit === 'contain' ? 'object-contain' : 'object-cover'
-              }`}
-            />
-          </div>
+          />
         ))}
-        {slides[current].fit === 'cover' && (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-            <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
-          </>
-        )}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
       </div>
 
       {/* Carousel Controls */}
