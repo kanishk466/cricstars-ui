@@ -5,11 +5,13 @@ import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import heroBanner from '@/assets/hero-banner.jpg';
 import heroBanner2 from '@/assets/hero-banner-2.jpg';
 import heroBanner3 from '@/assets/hero-banner-3.jpg';
+import tournamentPoster from '@/assets/tournament-2026-banner.jpg.asset.json';
 
 const slides = [
-  { src: heroBanner, alt: 'Cricket stadium' },
-  { src: heroBanner2, alt: 'Cricket batsman' },
-  { src: heroBanner3, alt: 'Cricket bowler' },
+  { src: tournamentPoster.url, alt: 'All India Open Age Group Tournament 2026', fit: 'contain' as const },
+  { src: heroBanner, alt: 'Cricket stadium', fit: 'cover' as const },
+  { src: heroBanner2, alt: 'Cricket batsman', fit: 'cover' as const },
+  { src: heroBanner3, alt: 'Cricket bowler', fit: 'cover' as const },
 ];
 
 const HeroSection = () => {
